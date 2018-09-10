@@ -1,5 +1,5 @@
-from flask import Flask
-app = Flask(__name__)
+from webapp import app
+from .images import views as images_views  # noqa: F401
 
 
 @app.route('/')

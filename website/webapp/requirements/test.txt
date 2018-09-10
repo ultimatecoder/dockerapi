@@ -2,3 +2,7 @@
 
 # Linting
 flake8
+
+# Testing
+Flask-Testing
+nose2
