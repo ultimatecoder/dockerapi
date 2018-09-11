@@ -3,7 +3,7 @@ from unittest.mock import patch
 import flask_testing
 
 from webapp import app
-from . import mocks
+from webapp.test_utils import mocks
 from json_api import serializers
 
 
