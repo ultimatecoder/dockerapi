@@ -32,6 +32,9 @@ for i in range(4):
     _i.name = f"container_{i}"
     _i.short_id = f"short_id {i}"
     _i.status = "Up" if i % 2 else "Down"
+    _i.logs = MagicMock(
+        return_value=b'This is test log/nThis is test log'
+    )
     Containers.append(_i)
 
 
