@@ -44,3 +44,8 @@ SingleContainer = MagicMock(return_value=Containers[0])
 NotFound = MagicMock(
     side_effect=docker.errors.NotFound("Container didn't find")
 )
+
+
+ContainersList = MagicMock(
+    side_effect=lambda all=True: Containers if all else Containers[:3]
+)

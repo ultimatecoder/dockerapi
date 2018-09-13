@@ -10,7 +10,7 @@ def json_api(f):
     def wrapper(*args, **kwargs):
         if (
             request.method in ["POST", "PUT"] and
-            request.headers.get("Content-type") != "application/json"
+            request.headers.get("Content-Type") != "application/json"
         ):
             return jsonify({"error": "Unsupported Content type"}), 400
         if request.accept_mimetypes.find("application/json") == -1:

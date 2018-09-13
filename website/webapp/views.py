@@ -1,5 +1,6 @@
 from webapp import app
 from .images import views as images_views  # noqa: F401
+from .containers import views  # noqa: F401
 
 
 @app.route('/')
