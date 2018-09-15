@@ -6,7 +6,9 @@ from webapp import app
 from webapp.json_api import json_api, serializers
 
 
-@app.route('/containers/<string:container_id>', methods=["GET"])
+@app.route(
+    '/containers/<string:container_id>', methods=["GET"], strict_slashes=False
+)
 @json_api
 def container_get(container_id):
     client = docker.from_env()
@@ -18,7 +20,11 @@ def container_get(container_id):
     return jsonify(serializers.dict_serializer(container, fields=fields))
 
 
-@app.route("/containers/<string:container_id>/logs", methods=["GET"])
+@app.route(
+    "/containers/<string:container_id>/logs",
+    methods=["GET"],
+    strict_slashes=False
+)
 @json_api
 def container_log_get(container_id):
     client = docker.from_env()
@@ -33,7 +39,7 @@ def container_log_get(container_id):
     return jsonify(serialized_container)
 
 
-@app.route("/containers", methods=["GET"])
+@app.route("/containers", methods=["GET"], strict_slashes=False)
 @json_api
 def containers_get():
     response = {"data": []}
@@ -47,7 +53,11 @@ def containers_get():
     return jsonify(response)
 
 
-@app.route("/containers/<string:container_id>", methods=["DELETE"])
+@app.route(
+    "/containers/<string:container_id>",
+    methods=["DELETE"],
+    strict_slashes=False
+)
 @json_api
 def container_delete(container_id):
     client = docker.from_env()
@@ -59,7 +69,11 @@ def container_delete(container_id):
     return jsonify({"message": "Container removed successfully."})
 
 
-@app.route("/containers/<string:container_id>", methods=["PATCH"])
+@app.route(
+    "/containers/<string:container_id>",
+    methods=["PATCH"],
+    strict_slashes=False
+)
 @json_api
 def container_update(container_id):
     client = docker.from_env()
@@ -76,7 +90,7 @@ def container_update(container_id):
     return jsonify({"message": f"Container {desired_state} successfully!"})
 
 
-@app.route("/containers", methods=["POST"])
+@app.route("/containers", methods=["POST"], strict_slashes=False)
 @json_api
 def container_create():
     client = docker.from_env()
