@@ -1,0 +1,8 @@
+version: '3'
+services:
+  end_to_end_tests:
+    build: ./end_to_end_tests
+    links:
+      - nginx:nginx
+    environment:
+      - TARGET_DOMAIN=nginx

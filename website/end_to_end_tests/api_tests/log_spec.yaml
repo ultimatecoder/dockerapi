@@ -1,0 +1,9 @@
+# log_spec.yaml
+---
+version: 1
+
+loggers:
+    tavern:
+        handlers:
+            - stderr
+        level: DEBUG

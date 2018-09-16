@@ -1,0 +1,62 @@
+test_name: Test Create, Read, Update and Delete endpoints works correctly
+
+stages:
+  - name: Make sure it is possible to get list of images
+    request:
+      url: "http://{tavern.env_vars.TARGET_DOMAIN}/images/"
+      method: GET
+      headers:
+        content-type: application/json
+        accept: application/json
+    response:
+      status_code: 200
+      headers:
+        content-type: application/json
+  - name: Make sure it is possible to create an Image
+    request:
+      url: "http://{tavern.env_vars.TARGET_DOMAIN}/images/"
+      method: POST
+      json:
+        name: "alpine:latest"
+      headers:
+        content-type: application/json
+        accept: application/json
+    response:
+      status_code: 201
+      headers:
+        content-type: application/json
+      save:
+        body:
+          id: id
+          short_id: short_id
+          tags_0: tags.0
+          tags_1: tags.1
+  - name: Make sure it is possible to get single image
+    request:
+      url: "http://{tavern.env_vars.TARGET_DOMAIN}/images/{id}/"
+      method: GET
+      headers:
+        content-type: application/json
+        accept: application/json
+    response:
+      status_code: 200
+      headers:
+        content-type: application/json
+      body:
+        id: "{id}"
+        short_id: "{short_id}"
+        tags:
+          - "{tags_0}"
+          - "{tags_1}"
+
+  - name: Make sure it is possible to delete a single image
+    request:
+      url: "http://{tavern.env_vars.TARGET_DOMAIN}/images/{id}/"
+      method: DELETE
+      headers:
+        content-type: application/json
+        accept: application/json
+    response:
+      status_code: 200
+      headers:
+        content-type: application/json
