@@ -1,6 +1,6 @@
 # Python
 # =============
-#
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -136,4 +136,3 @@ tags
 # Ansible
 # ========
 *.retry
->>>>>>> [ADD] Appropriate .gitignore file.

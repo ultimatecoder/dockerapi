@@ -6,7 +6,7 @@ from webapp import app
 from webapp.json_api import json_api, serializers
 
 
-@app.route('/images', methods=["GET"])
+@app.route('/images', methods=["GET"], strict_slashes=False)
 @json_api
 def images_get():
     client = docker.from_env()
@@ -19,7 +19,7 @@ def images_get():
     return jsonify(response)
 
 
-@app.route("/images", methods=["POST"])
+@app.route("/images", methods=["POST"], strict_slashes=False)
 @json_api
 def images_post():
     request_data = request.get_json()
@@ -39,7 +39,7 @@ def images_post():
     return jsonify(response), 201
 
 
-@app.route("/images/<string:image_id>", methods=["GET"])
+@app.route("/images/<string:image_id>", methods=["GET"], strict_slashes=False)
 @json_api
 def images_individual_get(image_id):
     client = docker.from_env()
@@ -55,7 +55,11 @@ def images_individual_get(image_id):
     return jsonify(response)
 
 
-@app.route("/images/<string:image_id>", methods=["DELETE"])
+@app.route(
+    "/images/<string:image_id>",
+    methods=["DELETE"],
+    strict_slashes=False
+)
 def images_individual_delete(image_id):
     client = docker.from_env()
     try:
